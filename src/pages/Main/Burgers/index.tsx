@@ -12,7 +12,7 @@ export default function Burgers() {
 
   useEffect(() => {
     
-    axios.get(`${process.env.REACT_APP_API_URL}/snacks/burger`)
+    axios.get(`https://api-food-service-nnmbhrgta-kleveshenrique.vercel.app/snacks/burger`)
     .then((res)=>{
       setBurgers(res.data)
      

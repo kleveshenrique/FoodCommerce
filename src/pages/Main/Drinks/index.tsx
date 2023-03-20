@@ -11,7 +11,7 @@ export default function Drinks() {
   const [drinks, setDrinks] = useState<SnackData[]>([])
 
   useEffect(() => {    
-    axios.get(`${process.env.REACT_APP_API_URL}/snacks/drink`)
+    axios.get(`https://api-food-service-nnmbhrgta-kleveshenrique.vercel.app/snacks/drink`)
     .then((res)=>{
       setDrinks(res.data)
      

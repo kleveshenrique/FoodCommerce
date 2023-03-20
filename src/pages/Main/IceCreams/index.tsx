@@ -12,7 +12,7 @@ export default function IceCreams() {
 
   useEffect(() => {
     
-    axios.get(`${process.env.REACT_APP_API_URL}/snacks/ice-cream`)
+    axios.get(`https://api-food-service-nnmbhrgta-kleveshenrique.vercel.app/snacks/ice-cream`)
     .then((res)=>{
       setIceCreams(res.data)
      
