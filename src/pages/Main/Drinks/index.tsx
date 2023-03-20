@@ -6,13 +6,13 @@ import { Snacks } from '../../../components/Snacks'
 import { SnackTitle } from '../../../components/SnackTitle'
 import { SnackData } from '../../../interface/SnackData'
 
-import { getDrinks } from '../../../services/api'
+//import { getDrinks } from '../../../services/api'
 
 export default function Drinks() {
   const [drinks, setDrinks] = useState<SnackData[]>([])
 
-  useEffect(() => {
-    axios.get("http://localhost:3033/snacks/drink")
+  useEffect(() => {    
+    axios.get(`${process.env.REACT_APP_API_URL}/snacks/drink`)
     .then((res)=>{
       setDrinks(res.data)
      
@@ -20,15 +20,7 @@ export default function Drinks() {
       console.log(err)
     })    
   }, [])
-
-  // useEffect(() => {
-  //   ;(async () => {
-  //     const drinksRequest = await getDrinks()
-
-  //     setDrinks(drinksRequest.data)
-  //   })()
-  // }, [])
-
+  
   return (
     <>
       <Head title='Bebidas' />

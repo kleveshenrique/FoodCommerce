@@ -8,9 +8,12 @@ import { Container } from './styles'
 
 interface SnacksProps {
   snacks: SnackData[]
+ 
 }
 
-export function Snacks({ snacks }: SnacksProps) {
+ 
+
+export function Snacks({ snacks}: SnacksProps) {
   return (
     <Container>
       {!snacks.length
