@@ -6,7 +6,6 @@ import { Snacks } from '../../../components/Snacks'
 import { SnackTitle } from '../../../components/SnackTitle'
 import { SnackData } from '../../../interface/SnackData'
 
-//import { getIceCreams } from '../../../services/api'
 
 export default function IceCreams() {
   const [iceCreams, setIceCreams] = useState<SnackData[]>([])

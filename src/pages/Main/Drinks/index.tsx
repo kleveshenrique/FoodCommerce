@@ -6,7 +6,6 @@ import { Snacks } from '../../../components/Snacks'
 import { SnackTitle } from '../../../components/SnackTitle'
 import { SnackData } from '../../../interface/SnackData'
 
-//import { getDrinks } from '../../../services/api'
 
 export default function Drinks() {
   const [drinks, setDrinks] = useState<SnackData[]>([])
