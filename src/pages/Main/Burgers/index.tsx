@@ -11,7 +11,7 @@ export default function Burgers() {
   const [burgers, setBurgers] = useState<SnackData[]>([])
 
   useEffect(() => {    
-    axios.get(`https://api-food-service-nnmbhrgta-kleveshenrique.vercel.app/snacks/burger`)
+    axios.get(`https://api-food-service.vercel.app/snacks/burger`)
     .then((res)=>{
       setBurgers(res.data)
      
