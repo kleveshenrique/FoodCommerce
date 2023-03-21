@@ -10,9 +10,8 @@ import { SnackData } from '../../../interface/SnackData'
 export default function IceCreams() {
   const [iceCreams, setIceCreams] = useState<SnackData[]>([])
 
-  useEffect(() => {
-    
-    axios.get(`https://api-food-service-nnmbhrgta-kleveshenrique.vercel.app/snacks/ice-cream`)
+  useEffect(() => {    
+    axios.get(`http://api-food-service-nnmbhrgta-kleveshenrique.vercel.app/snacks/ice-cream`)
     .then((res)=>{
       setIceCreams(res.data)
      

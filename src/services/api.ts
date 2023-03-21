@@ -2,18 +2,13 @@ import axios from 'axios'
 import { SnackData } from '../interface/SnackData'
 
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
-  headers: {
-    'X-Custom-Header': 'foobar',
-    'Access-Control-Allow-Origin': '*',
-    'Content-Type': 'application/json',
-  }
+  baseURL: 'https://api-food-service-nnmbhrgta-kleveshenrique.vercel.app'
 })
 
-export const getBurgers = async () => await api.get<SnackData[]>('/snacks/burger')
-export const getPizzas = async () =>await api.get<SnackData[]>('/pizzas')
-export const getDrinks = async () =>await api.get<SnackData[]>('/drinks')
-export const getIceCreams = async () =>await api.get<SnackData[]>('/ice-creams')
+// export const getBurgers   = async () => await api.get('/snacks/burger')
+// export const getDrinks    = async () =>await api.get('/snacks/drink')
+// export const getPizzas    = async () =>await api.get('/snacks/pizza')
+// export const getIceCreams = async () =>await api.get('/snacks/ice-cream')
 
 // export function getSnacks(snackName:string){
 //     axios.get(`${process.env.REACT_APP_API_URL}/snacks/${snackName}`)
