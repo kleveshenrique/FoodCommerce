@@ -10,7 +10,7 @@ export default function Pizzas() {
   const [pizzas, setPizzas] = useState<SnackData[]>([])
 
   useEffect(() => {    
-    axios.get(`http://api-food-service-nnmbhrgta-kleveshenrique.vercel.app/snacks/pizza`)
+    axios.get(`https://api-food-service-nnmbhrgta-kleveshenrique.vercel.app/snacks/pizza`)
     .then((res)=>{
       setPizzas(res.data)
      
