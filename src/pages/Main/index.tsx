@@ -16,7 +16,7 @@ export default function Main() {
         <div className='header'>
           <img src={logoImg} />
           <div className='sectionCart'>
-            <span>2</span>
+            <span>3</span>
             <img src={cartImg} />
           </div>
         </div>
