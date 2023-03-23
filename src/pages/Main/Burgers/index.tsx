@@ -1,23 +1,27 @@
-import axios from 'axios'
 import { useEffect, useState } from 'react'
 
 import { Head } from '../../../components/Head'
 import { Snacks } from '../../../components/Snacks'
 import { SnackTitle } from '../../../components/SnackTitle'
 import { SnackData } from '../../../interface/SnackData'
-
+import api from '../../../services/api'
 
 export default function Burgers() {
   const [burgers, setBurgers] = useState<SnackData[]>([])
 
   useEffect(() => {    
-    axios.get(`https://api-food-service.vercel.app/snacks/burger`)
-    .then((res)=>{
-      setBurgers(res.data)
+    (async()=>{      
+      api.get("snacks/burger").then((res)=>{
+        setBurgers(res.data)
+      })
+    })()
+    // axios.get(`https://api-food-service.vercel.app/snacks/burger`)
+    // .then((res)=>{
+    //   setBurgers(res.data)
      
-    }).catch((err)=>{
-      console.log(err)
-    })         
+    // }).catch((err)=>{
+    //   console.log(err)
+    // })         
   }, [])
 
   

@@ -2,7 +2,7 @@ import axios from 'axios'
 import { SnackData } from '../interface/SnackData'
 
 const api = axios.create({
-  baseURL: 'https://api-food-service-nnmbhrgta-kleveshenrique.vercel.app'
+  baseURL: 'https://api-food-service.vercel.app'
 })
 
 // export const getBurgers   = async () => await api.get('/snacks/burger')

@@ -5,13 +5,21 @@ import { Sidebar } from '../../components/Sidebar'
 import { Container } from './styles'
 
 import logoImg from '../../assets/logo.svg'
+import cartImg from '../../assets/cart.svg'
+
 
 export default function Main() {
   return (
     <Container>
       <Sidebar />
       <section>
-        <img src={logoImg} />
+        <div className='header'>
+          <img src={logoImg} />
+          <div className='sectionCart'>
+            <span>2</span>
+            <img src={cartImg} />
+          </div>
+        </div>
         <Outlet />
       </section>
     </Container>
