@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { SnackData } from '../interface/SnackData'
+//import { SnackData } from '../interface/SnackData'
 
 const api = axios.create({
   baseURL: 'https://api-food-service.vercel.app'
