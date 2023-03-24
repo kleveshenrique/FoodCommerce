@@ -6,7 +6,6 @@ import { Container } from './styles'
 
 import logoImg from '../../assets/logo.svg'
 import CartImg from '../../assets/cart.svg'
-import { SnackData } from '../../interface/SnackData'
 
 
 export default function Main() {

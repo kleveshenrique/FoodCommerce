@@ -8,10 +8,7 @@ import api from '../../../services/api'
 
 export default function Burgers() {
   const [burgers, setBurgers] = useState<SnackData[]>([])  
-  const [itemCart, setItemCart] = useState<SnackData[]>([])  
-
-
-  
+    
   useEffect(() => {    
     (async()=>{      
       api.get("snacks/burger").then((res)=>{
