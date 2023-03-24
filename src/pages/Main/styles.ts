@@ -29,15 +29,17 @@ export const Container = styled.main`
         flex-direction: column;
         align-items: center;
         justify-content: center; 
-       
-        position: relative;
         
+        padding: auto;
+        position: relative;
+       
+                
        padding: 1px;
         
         span {
-          position: absolute;
-         right: 1.3rem;
-         top: 1rem;
+          
+          top: 0;
+          right: 1.5;
           margin-bottom: 0;
           color: yellow;
           font-size: 1.5rem;
@@ -47,8 +49,12 @@ export const Container = styled.main`
         
         img {
           margin-top: 0;
-          width: 4rem;
-          height: 4rem;           
+          width: 3rem;
+          height: 3rem;   
+          
+          :hover {
+            cursor: pointer;            
+          }
         }
       }
     }

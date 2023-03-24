@@ -11,9 +11,9 @@ interface SnacksProps {
  
 }
 
- 
 
-export function Snacks({ snacks}: SnacksProps) {
+export function Snacks({snacks}: SnacksProps) {
+  
   return (
     <Container>
       {!snacks.length

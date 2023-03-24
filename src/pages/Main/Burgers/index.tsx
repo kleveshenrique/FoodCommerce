@@ -7,8 +7,11 @@ import { SnackData } from '../../../interface/SnackData'
 import api from '../../../services/api'
 
 export default function Burgers() {
-  const [burgers, setBurgers] = useState<SnackData[]>([])
+  const [burgers, setBurgers] = useState<SnackData[]>([])  
+  const [itemCart, setItemCart] = useState<SnackData[]>([])  
 
+
+  
   useEffect(() => {    
     (async()=>{      
       api.get("snacks/burger").then((res)=>{
@@ -22,15 +25,14 @@ export default function Burgers() {
     // }).catch((err)=>{
     //   console.log(err)
     // })         
-  }, [])
-
-  
+  }, [])  
 
   return (
+    
     <>
       <Head title='Hambúrgueres' />
       <SnackTitle>Hambúrgueres</SnackTitle>
-      <Snacks snacks={burgers} ></Snacks>
+      <Snacks snacks={burgers}></Snacks>
     </>
   )
 }
