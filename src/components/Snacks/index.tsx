@@ -27,7 +27,7 @@ export function Snacks({snacks}: SnacksProps) {
           return (
             <div key={snack._id} className='snack'>
               { snackExistInCart && <span>{snackExistInCart.quantity}</span>}
-              <h2>{snack.name} - {snacks.length}</h2>
+              <h2>{snack.name}</h2>
               <img src={snack.image} alt={snack.name} />
               <p>{snack.description}</p>
               <div>
