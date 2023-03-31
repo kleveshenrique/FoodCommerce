@@ -1,31 +1,19 @@
-import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useSnack } from '../../../hooks/useSnack'
 
 import { Head } from '../../../components/Head'
 import { Snacks } from '../../../components/Snacks'
 import { SnackTitle } from '../../../components/SnackTitle'
-import { SnackData } from '../../../interface/SnackData'
+
 
 
 export default function IceCreams() {
-  const [iceCreams, setIceCreams] = useState<SnackData[]>([])
-
-  useEffect(() => {    
-    axios.get(`https://api-food-service.vercel.app/snacks/ice-cream`)
-    .then((res)=>{
-      setIceCreams(res.data)
-     
-    }).catch((err)=>{
-      console.log(err)
-    }) 
-       
-  }, [])
+  const {icecreams} = useSnack()
 
   return (
     <>
       <Head title='Sorvetes' />
       <SnackTitle>Sorvetes</SnackTitle>
-      <Snacks snacks={iceCreams}></Snacks>
+      <Snacks snacks={icecreams}></Snacks>
     </>
   )
 }

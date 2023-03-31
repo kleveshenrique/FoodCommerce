@@ -1,24 +1,13 @@
-import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useSnack } from '../../../hooks/useSnack'
 
 import { Head } from '../../../components/Head'
 import { Snacks } from '../../../components/Snacks'
 import { SnackTitle } from '../../../components/SnackTitle'
-import { SnackData } from '../../../interface/SnackData'
 
 export default function Pizzas() {
-  const [pizzas, setPizzas] = useState<SnackData[]>([])
 
-  useEffect(() => {    
-    axios.get(`https://api-food-service.vercel.app/snacks/pizza`)
-    .then((res)=>{
-      setPizzas(res.data)
-     
-    }).catch((err)=>{
-      console.log(err)
-    }) 
-  }, [])
-
+  const {pizzas} = useSnack()
+  
   return (
     <>
       <Head title='Pizzas' />

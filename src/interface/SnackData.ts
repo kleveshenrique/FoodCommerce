@@ -1,6 +1,6 @@
 export interface SnackData{
     _id:string,
-    snack:String,
+    snack:string,
     name:string,
     description:string,
     price:number,

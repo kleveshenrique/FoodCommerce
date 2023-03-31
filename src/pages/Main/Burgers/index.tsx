@@ -1,35 +1,20 @@
-import { useEffect, useState } from 'react'
+
+import { useSnack } from '../../../hooks/useSnack'
 
 import { Head } from '../../../components/Head'
 import { Snacks } from '../../../components/Snacks'
 import { SnackTitle } from '../../../components/SnackTitle'
-import { SnackData } from '../../../interface/SnackData'
-import api from '../../../services/api'
 
 export default function Burgers() {
-  const [burgers, setBurgers] = useState<SnackData[]>([])  
-    
-  useEffect(() => {    
-    (async()=>{      
-      api.get("snacks/burger").then((res)=>{
-        setBurgers(res.data)
-      })
-    })()
-    // axios.get(`https://api-food-service.vercel.app/snacks/burger`)
-    // .then((res)=>{
-    //   setBurgers(res.data)
-     
-    // }).catch((err)=>{
-    //   console.log(err)
-    // })         
-  }, [])  
+
+  const {burgers} = useSnack()
 
   return (
     
     <>
       <Head title='Hambúrgueres' />
       <SnackTitle>Hambúrgueres</SnackTitle>
-      <Snacks snacks={burgers}></Snacks>
+      <Snacks snacks={burgers} ></Snacks>
     </>
   )
 }
