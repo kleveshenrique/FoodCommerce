@@ -8,7 +8,7 @@ right:1.5rem;
 
 max-width:15rem;
 height:3rem;
-background-color: ${({theme})=> theme.colors.red};;
+background-color: ${({theme})=> theme.colors.red};
 font-weight:500;
 font-size:1.125rem;
 border-radius:1.5rem;
@@ -26,7 +26,8 @@ border-radius:1.5rem;
     padding-right:0.5rem;
 
         
-    svg {        
+    svg {     
+        fill: ${({theme})=> theme.colors.white};  
         width:3rem;
         height:3rem;              
     }

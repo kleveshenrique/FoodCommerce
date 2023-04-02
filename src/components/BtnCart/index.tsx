@@ -1,18 +1,25 @@
-import React, { useContext } from 'react';
+import React, { useContext} from 'react';
 import { Link } from 'react-router-dom';
 import {ReactComponent as CartIcon} from "../../assets/cart.svg"
 import { Container } from './style';
 
 import { CartContext} from "../../contexts/CartContext"
-
-
-
+import { currencyFormat } from '../../helpers/currencyFormat';
 
 
 function countRequests(){
+    
     const {cart} = useContext(CartContext)
-    const total = cart.reduce((acc,item)=>item.quantity + acc, 0)
-    return total
+  
+    let subTotal=0;
+    let qtdItems=0;
+
+    cart.forEach((snack)=>{
+      subTotal = subTotal+(snack.quantity*snack.price)
+      qtdItems = qtdItems + snack.quantity
+       
+    })
+    return {qtdItems,subTotal}
 }
 
 const BtnCart: React.FC = () => {
@@ -23,8 +30,8 @@ const BtnCart: React.FC = () => {
                 
                 <CartIcon/>
                 <span>
-                    <span>{countRequests()} </span>
-                    <span>items</span>
+                    <span>{countRequests().qtdItems} {countRequests().qtdItems>1 ? 'items' : 'item'}</span>
+                    <span>{currencyFormat(countRequests().subTotal)}</span>
                 </span>
            
         </Link>

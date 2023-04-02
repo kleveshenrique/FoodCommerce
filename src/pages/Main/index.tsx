@@ -4,25 +4,15 @@ import { Container } from './styles'
 
 import logoImg from '../../assets/logo.svg'
 import BtnCart from '../../components/BtnCart'
+import { useCart } from '../../hooks/useCart'
 //import { useCart } from '../../hooks/useCart'
 
 
 
-export default function Main() {   
+export default function Main() {  
   
-  //const { cart } = useCart()
+  const {cart}=useCart()
 
-  // function handleShowCart(){
-  //   alert("Em Desenvolvimento")
-  // }  
-
-  // function countRequests(){
-  //   const total = cart.reduce((acc,item)=>item.quantity + acc, 0)
-  //   return total
-  // }
-
- 
-    
   return (
     <Container>
      
@@ -36,7 +26,8 @@ export default function Main() {
             </div> */}
           </div>
           <Outlet />
-          <BtnCart/>
+
+          {cart.length>0 && <BtnCart/>}
         </section>
      
     </Container>

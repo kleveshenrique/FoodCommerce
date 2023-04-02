@@ -89,4 +89,8 @@ export const Container = styled.div`
       }
     }
   }
+
+  .snackExistInCart {
+    background: ${({ theme }) => theme.colors.gray700};
+  }
 `

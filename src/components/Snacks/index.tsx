@@ -25,7 +25,7 @@ export function Snacks({snacks}: SnacksProps) {
         : snacks.map((snack) =>{ 
           const snackExistInCart = cart.find((item)=>item._id===snack._id)
           return (
-            <div key={snack._id} className='snack'>
+            <div key={snack._id} className={snackExistInCart? 'snack snackExistInCart':'snack'}>
               { snackExistInCart && <span>{snackExistInCart.quantity}</span>}
               <h2>{snack.name}</h2>
               <img src={snack.image} alt={snack.name} />
