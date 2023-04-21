@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useState } from 'react'
 import { SnackData } from '../interface/SnackData'
 import { Toastify } from '../helpers/toastify'
+import { getEmojiSnack } from '../helpers/SnackEmoji'
 
 
 interface Snack extends SnackData{
@@ -55,8 +56,8 @@ export function CartProvider({children}:CartProviderProps){
             setCart(newCart)
            
             
-            Toastify({message:`${snackInCart.name} atualizado com sucesso.`,type:'success'})
-
+            Toastify({message:`${getEmojiSnack(snackInCart.snack)} ${snackInCart.name} adicionado(a) ao carrinho.`,type:'success'})
+           
            return
         }
 
@@ -66,7 +67,7 @@ export function CartProvider({children}:CartProviderProps){
 
 
         setCart(newCart)
-        Toastify({message:`${newSnack.name} adiconado com sucesso.`,type:'success'})
+        Toastify({message:`${getEmojiSnack(newSnack.snack)} ${newSnack.name} adicionado(a) ao carrinho.`,type:'success'})
        
 
         

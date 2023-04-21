@@ -10,10 +10,10 @@
   export function Toastify({message}:ToastProps){
     toast.success(`${message}`, {     
       position: "top-center",
-      autoClose: 1000,
+      autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: false,
-      pauseOnHover: false,
+      pauseOnHover: true,
       draggable: false,
       progress: undefined,
       theme: "dark",
