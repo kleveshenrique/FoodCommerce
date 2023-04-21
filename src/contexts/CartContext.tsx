@@ -1,5 +1,7 @@
 import { createContext, ReactNode, useState } from 'react'
 import { SnackData } from '../interface/SnackData'
+import { Toastify } from '../helpers/toastify'
+
 
 interface Snack extends SnackData{
     quantity:number,
@@ -51,7 +53,9 @@ export function CartProvider({children}:CartProviderProps){
             })
 
             setCart(newCart)
-            console.log("snack updated :",newCart)
+           
+            
+            Toastify({message:`${snackInCart.name} atualizado com sucesso.`,type:'success'})
 
            return
         }
@@ -62,8 +66,10 @@ export function CartProvider({children}:CartProviderProps){
 
 
         setCart(newCart)
+        Toastify({message:`${newSnack.name} adiconado com sucesso.`,type:'success'})
+       
 
-        console.log("Cart:",newCart)
+        
         
 
     }
