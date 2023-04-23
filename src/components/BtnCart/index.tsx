@@ -2,7 +2,6 @@ import React, { useContext} from 'react';
 import { Link } from 'react-router-dom';
 import {ReactComponent as CartIcon} from "../../assets/cart.svg"
 import { Container } from './style';
-
 import { CartContext} from "../../contexts/CartContext"
 import { currencyFormat } from '../../helpers/currencyFormat';
 
@@ -25,8 +24,7 @@ function countRequests(){
 const BtnCart: React.FC = () => {
   return (
     <Container>        
-        <Link to="/cart" className='link'>
-           
+        <Link to="/cart" className='link'>           
                 
                 <CartIcon/>
                 <span>

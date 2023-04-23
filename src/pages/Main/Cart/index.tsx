@@ -1,16 +1,10 @@
 import React from 'react';
-import { useCart } from '../../../hooks/useCart';
+import TableCart from '../../../components/TableCart';
 
-
-const Cart: React.FC = () => {
-    const { cart } = useCart()
-    
+const Cart: React.FC = () => {    
 
   return (
-    <>
-    <h1>Página ainda em desenvolvimento</h1>
-    <ul>{cart.map((snack)=><li key={snack._id}>{snack.quantity}-{snack.name}</li>)}</ul>
-    </>
+    <TableCart/>
   )
 }
 

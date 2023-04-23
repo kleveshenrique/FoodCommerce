@@ -68,9 +68,7 @@ export function CartProvider({children}:CartProviderProps){
 
         setCart(newCart)
         Toastify({message:`${getEmojiSnack(newSnack.snack)} ${newSnack.name} adicionado(a) ao carrinho.`,type:'success'})
-       
-
-        
+              
         
 
     }

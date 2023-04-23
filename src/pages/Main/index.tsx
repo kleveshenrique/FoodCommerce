@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet,useLocation } from 'react-router-dom'
 import { Sidebar } from '../../components/Sidebar'
 import { Container } from './styles'
 
@@ -9,8 +9,12 @@ import { useCart } from '../../hooks/useCart'
 
 
 
+
 export default function Main() {  
-  
+
+  // pegando a url atual da pagina
+  const location = useLocation().pathname
+    
   const {cart}=useCart()
 
   return (
@@ -27,7 +31,7 @@ export default function Main() {
           </div>
           <Outlet />
 
-          {cart.length>0 && <BtnCart/>}
+          {(cart.length>0 && location!="/cart") && <BtnCart/>}
         </section>
      
     </Container>
