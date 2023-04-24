@@ -8,19 +8,86 @@ export const Container = styled.div`
 
     table{       
         width:100%;
+        border-spacing: 0 0;
         border-collapse: collapse;
 
-        thead {
-            th{
-                text-align: left;
-                padding-bottom: 2rem;
+        th{
+            font-weight: 500;
+            font-size: 1.125rem;
+            text-align: left;
+            padding: 0 1rem 0.5rem 1rem;
+            text-transform: uppercase;
+
+            &:nth-child(2){
+                padding-left: 2rem;
             }
         }
+            
+     
         
         tbody{     
 
+            td {
+                padding: 1.5rem 1rem 1.5rem 1rem;                
+                border-bottom: 1px solid ${({theme})=>theme.colors.gray600};
+
+                h4{
+                    font-weight: 400;
+                    font-size: 1.125rem;
+                    margin-bottom: 0.5rem;
+                }
+
+                > span{
+                    font-weight: 700;
+                    font-size: 1.5rem;
+                }
+
+                &:first-child{
+                    width: 7.5rem;
+                    padding-left: 0;
+                    padding-right: 0;
+
+                    img{
+                        object-fit: cover;
+                        width: 7.5rem;
+                        height: 7.5rem; 
+                        border-radius: 8px;
+                    }
+                }
+
+                &:nth-child(2){
+                    padding-left: 2rem;
+                }
+
+                &:nth-child(3),
+                &:nth-child(4){
+                    width: 11rem;
+                }
+
+                &:last-child{
+                    width: 1.5rem;
+                    padding-left: 0;
+
+                    button{
+                        width: 100%;
+                        border: none;
+                        background: none;
+
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+
+                        svg{
+                            fill: ${({theme})=>theme.colors.yellow};
+                            width: 1.5rem;
+                            height: 1.5rem;
+                        }
+                    }
+                }
+            }
+
             
-            img {
+            /* img {
                     width: 100%;
                     height: 100%;
                     background-size: cover;
@@ -41,9 +108,8 @@ export const Container = styled.div`
             td:first-child { 
                 width: 150px;
                 text-align:center; 
-            }
-            td:first-child + td {  width: 500px }
-            td:first-child + td + td {  width: 200px }
+            } */
+            
             
         }
     }

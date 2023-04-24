@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container } from './style';
 import { useCart } from '../../hooks/useCart';
+import { currencyFormat } from '../../helpers/currencyFormat';
 
 // import { Container } from './styles';
 
@@ -24,9 +25,12 @@ const TableCart: React.FC = () => {
                 <td>
                    <img src={item.image}/>
                 </td>
-                <td>{item.name}</td>
+                <td>
+                    <h4>{item.name}</h4>
+                    <span>{currencyFormat(item.price)}</span>
+                </td>
                 <td>{item.quantity}</td>
-                <td>{item.quantity*item.price}</td>
+                <td>{currencyFormat(item.quantity*item.price)}</td>
                 <td>x</td>
             </tr>          
             ))}
