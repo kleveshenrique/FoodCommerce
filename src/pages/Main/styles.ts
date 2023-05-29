@@ -10,7 +10,7 @@ export const Container = styled.main`
     width: 100%;
     height: 100vh;
     overflow-y: auto;
-    padding: 2rem 1.875rem;
+    padding: 2rem 0.5rem;
 
     
     img {

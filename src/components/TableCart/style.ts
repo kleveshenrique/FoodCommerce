@@ -4,22 +4,24 @@ import { theme } from "../../styles/Theme";
 export const Container = styled.div`
     width: 100%;
     background-color: ${theme.colors.black};
-    padding: 1rem;
+    padding: 2rem 0.5rem;
+    box-sizing: border-box;
 
     table{       
         width:100%;
         border-spacing: 0 0;
         border-collapse: collapse;
-
+        
         th{
             font-weight: 500;
             font-size: 1.125rem;
             text-align: left;
-            padding: 0 1rem 0.5rem 1rem;
+            padding: 0.5rem;
             text-transform: uppercase;
 
             &:nth-child(2){
-                padding-left: 2rem;
+                padding-left: 1.5rem;
+                text-align: center;
             }
         }
             
@@ -28,18 +30,19 @@ export const Container = styled.div`
         tbody{     
 
             td {
-                padding: 1.5rem 1rem 1.5rem 1rem;                
+                padding: 1rem 0.5rem 1rem 0.5rem;                
                 border-bottom: 1px solid ${({theme})=>theme.colors.gray600};
+                width: 100%;
 
                 h4{
-                    font-weight: 400;
+                    font-weight: 500;
                     font-size: 1.125rem;
                     margin-bottom: 0.5rem;
                 }
 
-                > span{
-                    font-weight: 700;
-                    font-size: 1.5rem;
+                > span{       
+                    font-weight: 500;      
+                    font-size: 1rem;
                 }
 
                 &:first-child{
@@ -49,24 +52,23 @@ export const Container = styled.div`
 
                     img{
                         object-fit: cover;
-                        width: 7.5rem;
-                        height: 7.5rem; 
+                        width: 6.5rem;
+                        height: 6.5rem; 
                         border-radius: 8px;
                     }
                 }
 
-                &:nth-child(2){
-                    padding-left: 2rem;
+                &:nth-child(2){                    
+                    padding-left: 1rem;
                 }
 
                 &:nth-child(3),
                 &:nth-child(4){
-                    width: 11rem;
+                    width: 5rem;
                 }
 
                 &:last-child{
-                    width: 1.5rem;
-                    padding-left: 0;
+                    width: 1.5rem;                                      
 
                     button{
                         width: 100%;
@@ -84,9 +86,12 @@ export const Container = styled.div`
                         }
                     }
                 }
+                
             }
 
-            
+            tr:last-child td {
+                border-bottom: none;
+            }          
             /* img {
                     width: 100%;
                     height: 100%;
