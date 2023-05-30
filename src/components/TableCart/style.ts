@@ -14,14 +14,14 @@ export const Container = styled.div`
         
         th{
             font-weight: 500;
-            font-size: 1.125rem;
-            text-align: left;
-            padding: 0.5rem;
+            font-size: 1rem;
+            text-align: center;
+            padding: 0;
             text-transform: uppercase;
 
             &:nth-child(2){
                 padding-left: 1.5rem;
-                text-align: center;
+                
             }
         }
             
@@ -58,8 +58,32 @@ export const Container = styled.div`
                     }
                 }
 
+                .sectionQuantity{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 0.5rem;
+
+                    button{
+                        width: 100%;
+                        border: none;
+                        background: none;
+
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+
+                        svg{
+                            fill: ${({theme})=>theme.colors.yellow};
+                            width: 1.5rem;
+                            height: 1.5rem;
+                        }
+                    }
+                    
+                }
+
                 &:nth-child(2){                    
-                    padding-left: 1rem;
+                    padding-left: 1rem;                   
                 }
 
                 &:nth-child(3),

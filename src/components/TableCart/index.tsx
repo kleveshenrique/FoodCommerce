@@ -2,6 +2,7 @@ import React from 'react';
 import { Container } from './style';
 import { useCart } from '../../hooks/useCart';
 import { currencyFormat } from '../../helpers/currencyFormat';
+import { FaMinusCircle,FaPlusCircle, FaTrash } from 'react-icons/fa';
 
 // import { Container } from './styles';
 
@@ -29,9 +30,23 @@ const TableCart: React.FC = () => {
                     <h4>{item.name}</h4>
                     <span>{currencyFormat(item.price)}</span>
                 </td>
-                <td>{item.quantity}</td>
-                <td>{currencyFormat(item.quantity*item.price)}</td>
-                <td>x</td>
+                <td> 
+                    <span className='sectionQuantity'>   
+                        <button><FaMinusCircle/></button>          
+                        {item.quantity}                    
+                        <button><FaPlusCircle/></button>
+                    </span>
+                </td>
+                <td>
+                   
+                    {currencyFormat(item.quantity*item.price)}
+                    
+                </td>
+                <td>
+                    <button>
+                        <FaTrash/>
+                    </button>
+                </td>
             </tr>          
             ))}
         
