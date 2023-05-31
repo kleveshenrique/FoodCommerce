@@ -14,7 +14,7 @@
       hideProgressBar: false,
       closeOnClick: false,
       pauseOnHover: false,
-      draggable: false,
+      draggable: false,     
       progress: undefined,
       theme: "dark",
       });

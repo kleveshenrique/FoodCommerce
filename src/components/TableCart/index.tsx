@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Container } from './style';
 import { useCart } from '../../hooks/useCart';
 import { currencyFormat } from '../../helpers/currencyFormat';
 import { FaMinusCircle,FaPlusCircle, FaTrash } from 'react-icons/fa';
+import { CartContext } from '../../contexts/CartContext';
 
-// import { Container } from './styles';
+
 
 const TableCart: React.FC = () => {
-    const {cart} = useCart()
+    const {cart,removeSnackFromCart} = useCart()
+   
+
+    const handleRemoveSnack = (_id:string)=>{
+        removeSnackFromCart(_id)
+    }
+    
   return (
     <Container>
         <table>
@@ -32,7 +39,7 @@ const TableCart: React.FC = () => {
                 </td>
                 <td> 
                     <span className='sectionQuantity'>   
-                        <button><FaMinusCircle/></button>          
+                        <button><FaMinusCircle/></button>
                         {item.quantity}                    
                         <button><FaPlusCircle/></button>
                     </span>
@@ -43,7 +50,7 @@ const TableCart: React.FC = () => {
                     
                 </td>
                 <td>
-                    <button>
+                    <button onClick={()=>handleRemoveSnack(item._id)}>
                         <FaTrash/>
                     </button>
                 </td>

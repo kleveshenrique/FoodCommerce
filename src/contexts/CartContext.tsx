@@ -9,10 +9,10 @@ interface Snack extends SnackData{
     subTotal:number
 }
 
-// interface IRemoveSnackFromCartProps{
-//     _id : string,
-//     snack:string
-// }
+interface IRemoveSnackFromCartProps{
+    _id : string
+   // snack:string
+}
 
 // interface IUpdateCartProps{
 //     id:string,
@@ -22,7 +22,7 @@ interface Snack extends SnackData{
 interface cartContextProps{
    cart: Snack[]
    addSnackInToCart:(snack:SnackData)=>void
-//    removeSnackFromCart:({_id,snack}:IRemoveSnackFromCartProps)=>void
+   removeSnackFromCart:(_id:string)=>void
 //    updateCart:({id,snack,newQuantity}:IUpdateCartProps)=>void
 }
 
@@ -73,8 +73,13 @@ export function CartProvider({children}:CartProviderProps){
 
     }
 
+    function removeSnackFromCart(_id:string):void{
+        const newCart = cart.filter((item:Snack)=> item._id !== _id)
+        setCart(newCart)
+    }
+
     return (
-        <CartContext.Provider value={{cart,addSnackInToCart}}>
+        <CartContext.Provider value={{cart,addSnackInToCart,removeSnackFromCart}}>
             {children}
         </CartContext.Provider>
     )

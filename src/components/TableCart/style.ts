@@ -65,16 +65,17 @@ export const Container = styled.div`
                     gap: 0.5rem;
 
                     button{
-                        width: 100%;
-                        border: none;
+                        width: 100%;   
+                        border:none;                   
                         background: none;
+                        border-radius: 50%;
 
                         display: flex;
                         align-items: center;
-                        justify-content: flex-end;
+                        justify-content: center;
 
-                        svg{
-                            fill: ${({theme})=>theme.colors.yellow};
+                        svg{     
+                            fill: ${({theme})=>theme.colors.yellow};         
                             width: 1.5rem;
                             height: 1.5rem;
                         }
