@@ -1,10 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Container } from './style';
 import { useCart } from '../../hooks/useCart';
 import { currencyFormat } from '../../helpers/currencyFormat';
 import { FaMinusCircle,FaPlusCircle, FaTrash } from 'react-icons/fa';
-import { CartContext } from '../../contexts/CartContext';
-
 
 
 const TableCart: React.FC = () => {

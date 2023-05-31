@@ -9,10 +9,10 @@ interface Snack extends SnackData{
     subTotal:number
 }
 
-interface IRemoveSnackFromCartProps{
-    _id : string
-   // snack:string
-}
+// interface IRemoveSnackFromCartProps{
+//     _id : string
+//    // snack:string
+// }
 
 // interface IUpdateCartProps{
 //     id:string,
