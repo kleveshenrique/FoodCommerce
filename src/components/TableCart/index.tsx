@@ -6,12 +6,9 @@ import { FaMinusCircle,FaPlusCircle, FaTrash } from 'react-icons/fa';
 
 
 const TableCart: React.FC = () => {
-    const {cart,removeSnackFromCart} = useCart()
+    const {cart,removeSnackFromCart,addQuantitySnack,removeQuantitySnack} = useCart()
    
 
-    const handleRemoveSnack = (_id:string)=>{
-        removeSnackFromCart(_id)
-    }
     
   return (
     <Container>
@@ -37,18 +34,18 @@ const TableCart: React.FC = () => {
                 </td>
                 <td> 
                     <span className='sectionQuantity'>   
-                        <button><FaMinusCircle/></button>
+                        <button onClick={()=>removeQuantitySnack(item._id)}><FaMinusCircle/></button>
                         {item.quantity}                    
-                        <button><FaPlusCircle/></button>
+                        <button onClick={()=>addQuantitySnack(item._id)}><FaPlusCircle/></button>
                     </span>
                 </td>
                 <td>
                    
-                    {currencyFormat(item.quantity*item.price)}
+                    {currencyFormat(item.subTotal)}
                     
                 </td>
                 <td>
-                    <button onClick={()=>handleRemoveSnack(item._id)}>
+                    <button onClick={()=>removeSnackFromCart(item._id)}>
                         <FaTrash/>
                     </button>
                 </td>

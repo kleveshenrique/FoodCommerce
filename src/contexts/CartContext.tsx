@@ -14,16 +14,16 @@ interface Snack extends SnackData{
 //    // snack:string
 // }
 
-// interface IUpdateCartProps{
-//     id:string,
-//     snack:string,
-//     newQuantity:number
+// interface IUpdateQuantityProps{
+//     _id:string      
 // }
+
 interface cartContextProps{
    cart: Snack[]
    addSnackInToCart:(snack:SnackData)=>void
    removeSnackFromCart:(_id:string)=>void
-//    updateCart:({id,snack,newQuantity}:IUpdateCartProps)=>void
+   addQuantitySnack:(_id:string)=>void
+   removeQuantitySnack:(_id:string)=>void
 }
 
 interface CartProviderProps{
@@ -74,12 +74,52 @@ export function CartProvider({children}:CartProviderProps){
     }
 
     function removeSnackFromCart(_id:string):void{
+        console.log(_id)
         const newCart = cart.filter((item:Snack)=> item._id !== _id)
         setCart(newCart)
     }
 
+    function addQuantitySnack(_id:string):void{
+      
+        const newCart = cart.map((item:Snack) => {
+            
+            if( item._id == _id){                
+                const newSnack = {...item,quantity:item.quantity+1,subTotal:(item.quantity+1)*item.price}               
+                return newSnack
+            
+            }else{             
+            
+                return item   
+            }
+
+        })
+
+        setCart(newCart)
+                       
+    }
+
+    function removeQuantitySnack(_id:string):void{
+      
+        const newCart = cart.map((item:Snack) => {
+            
+            if( item._id == _id){                                
+                const newSnack = {...item,quantity:item.quantity-1,subTotal:(item.quantity-1)*item.price}               
+                return newSnack
+            
+            }else{             
+            
+                return item   
+            }
+
+        })
+        
+
+        setCart(newCart)
+                       
+    }
+
     return (
-        <CartContext.Provider value={{cart,addSnackInToCart,removeSnackFromCart}}>
+        <CartContext.Provider value={{cart,addSnackInToCart,removeSnackFromCart,addQuantitySnack,removeQuantitySnack}}>
             {children}
         </CartContext.Provider>
     )
