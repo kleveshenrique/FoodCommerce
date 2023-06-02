@@ -74,7 +74,7 @@ export function CartProvider({children}:CartProviderProps){
     }
 
     function removeSnackFromCart(_id:string):void{
-        console.log(_id)
+        
         const newCart = cart.filter((item:Snack)=> item._id !== _id)
         setCart(newCart)
     }
@@ -102,7 +102,7 @@ export function CartProvider({children}:CartProviderProps){
       
         const newCart = cart.map((item:Snack) => {
             
-            if( item._id == _id){                                
+            if(item._id == _id && item.quantity>1){                                
                 const newSnack = {...item,quantity:item.quantity-1,subTotal:(item.quantity-1)*item.price}               
                 return newSnack
             

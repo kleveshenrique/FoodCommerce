@@ -21,42 +21,15 @@ export const Container = styled.main`
     .header {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-    
+      justify-content: left;
+      
+      gap: 2rem;
 
-      div {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center; 
-        
-        padding: auto;
-        position: relative;
-       
-                
-       padding: 1px;
-        
-        span {
-          
-          top: 0;
-          right: 1.5;
-          margin-bottom: 0;
-          color: yellow;
-          font-size: 1.5rem;
-          
-        }
-       
-        
-        img {
-          margin-top: 0;
-          width: 3rem;
-          height: 3rem;   
-          
-          :hover {
-            cursor: pointer;            
-          }
-        }
+      &:first-child{
+        color:${({theme})=>theme.colors.yellow}
       }
+
+     
     }
     
 

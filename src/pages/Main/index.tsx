@@ -5,7 +5,8 @@ import { Container } from './styles'
 import logoImg from '../../assets/logo.svg'
 import BtnCart from '../../components/BtnCart'
 import { useCart } from '../../hooks/useCart'
-//import { useCart } from '../../hooks/useCart'
+
+import { FaArrowLeft} from 'react-icons/fa';
 
 
 
@@ -23,11 +24,8 @@ export default function Main() {
         <Sidebar />
         <section>
           <div className='header'>
-            <img src={logoImg} alt="Logo da Empresa" />
-            {/* <div className='sectionCart'>
-              <span>{countRequests()}</span>
-              <img src={CartImg} onClick={handleShowCart} />
-            </div> */}
+            <FaArrowLeft/>
+            <img src={logoImg} alt="Logo da Empresa" />            
           </div>
           <Outlet />
 
