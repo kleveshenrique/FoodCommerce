@@ -1,4 +1,4 @@
-import { Outlet,useLocation } from 'react-router-dom'
+import { Link, Outlet,useLocation } from 'react-router-dom'
 import { Sidebar } from '../../components/Sidebar'
 import { Container } from './styles'
 
@@ -21,15 +21,16 @@ export default function Main() {
   return (
     <Container>
      
-        <Sidebar />
+        {location !== "/cart" && <Sidebar />}
         <section>
           <div className='header'>
-            <FaArrowLeft/>
+            {(location == "/cart") && (<Link to="/"><FaArrowLeft/></Link>)}
             <img src={logoImg} alt="Logo da Empresa" />            
           </div>
           <Outlet />
 
           {(cart.length>0 && location!="/cart") && <BtnCart/>}
+          
         </section>
      
     </Container>

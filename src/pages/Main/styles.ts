@@ -22,11 +22,14 @@ export const Container = styled.main`
       display: flex;
       align-items: center;
       justify-content: left;
-      
+      padding-left: 1rem;
       gap: 2rem;
 
-      &:first-child{
-        color:${({theme})=>theme.colors.yellow}
+      
+      svg {
+        fill: ${({theme})=>theme.colors.yellow};
+        width: 1.5rem;
+        height: 1.5rem;
       }
 
      
@@ -40,6 +43,10 @@ export const Container = styled.main`
 
       img {
         align-self: center;
+      }
+
+      .header{
+        gap: 7rem;
       }
     }
   }

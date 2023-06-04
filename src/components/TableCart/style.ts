@@ -30,9 +30,10 @@ export const Container = styled.div`
         tbody{     
 
             td {
-                padding: 1rem 0.5rem 1rem 0.5rem;                
+                padding: 0.5rem;         
                 border-bottom: 1px solid ${({theme})=>theme.colors.gray600};
                 width: 100%;
+                
 
                 h4{
                     font-weight: 500;
@@ -47,14 +48,13 @@ export const Container = styled.div`
 
                 &:first-child{
                     width: 7.5rem;
-                    padding-left: 0;
-                    padding-right: 0;
-
+            
                     img{
                         object-fit: cover;
                         width: 6.5rem;
                         height: 6.5rem; 
                         border-radius: 8px;
+                        
                     }
                 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Container } from './style';
 import { useCart } from '../../hooks/useCart';
 import { currencyFormat } from '../../helpers/currencyFormat';
-import { FaMinusCircle,FaPlusCircle, FaTrash } from 'react-icons/fa';
+import { FaMinusCircle,FaPlusCircle, FaTrashAlt } from 'react-icons/fa';
 
 
 const TableCart: React.FC = () => {
@@ -46,7 +46,7 @@ const TableCart: React.FC = () => {
                 </td>
                 <td>
                     <button onClick={()=>removeSnackFromCart(item._id)}>
-                        <FaTrash/>
+                        <FaTrashAlt/>
                     </button>
                 </td>
             </tr>          
