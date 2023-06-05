@@ -1,3 +1,4 @@
+import { darken } from "polished";
 import styled  from "styled-components";
 
 
@@ -7,10 +8,11 @@ export const Container = styled.button`
     height: 5rem;
     padding:2rem;
     font-size: x-large;
-    font-weight: 500;
+    font-weight: 700;
     color: ${({theme})=>theme.colors.white};
-    background-color: ${({theme})=>theme.colors.green};
+    background: ${({theme})=>theme.colors.red};
     border: none;
+    border-radius: 2rem;
   
     
     display:flex;
@@ -21,8 +23,12 @@ export const Container = styled.button`
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 9999;
+    z-index: 9999;  
 
-        
+    transition: background 0.2s;
+    
+    &:hover{
+        background: ${darken(0.1, '#23DB42')};
+    }
 
 `
