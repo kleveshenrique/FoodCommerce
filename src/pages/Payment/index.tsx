@@ -4,10 +4,49 @@ import {Container,Form,Inner} from "./styles"
 import logoImg from '../../assets/logo.svg'
 import { Head } from "../../components/Head"
 import BtnPayOrder from "../../components/BtnPayOrder"
+import { useCart } from "../../hooks/useCart"
 
-
+import { currencyFormat } from "../../helpers/currencyFormat"
+import { useState } from "react"
+import axios from "axios"
 
 export function Payment(){
+
+    const {cart} = useCart()
+    const valorPedido = cart.reduce((acc,currente)=>acc+currente.subTotal,0)
+
+    const [payForm,setPayForm] = useState('')
+
+    const addressInitial = {
+        cep: "",
+        logradouro: "",
+        complemento: "",
+        bairro: "",
+        localidade: "",
+        uf: "",
+        ibge: "",
+        gia: "",
+        ddd: "",
+        siafi: ""
+    }
+    const [address,setAdress] = useState(addressInitial)
+
+    function handleGetAddressByZipeCode(zipCode:string){
+        axios.get(`https://viacep.com.br/ws/${zipCode}/json/`).then((res)=>{
+            if(res.data.erro){
+                setAdress(addressInitial)
+                return
+            }
+
+            setAdress(res.data)
+            
+        }).catch((error)=>{
+            console.log(error)
+        })
+
+        console.log(address)
+    }
+
     return(
         <Container>           
             <Head title="Pagamento"/>
@@ -37,14 +76,40 @@ export function Payment(){
                         </div>
                     </div>
                     <fieldset>
+                        {/* <legend>Pagamento</legend> */}
+                        
+                        <div className="groupField">
+                            <div className="field">  
+                                <label htmlFor="payForm">Forma de pagamento</label> 
+                                <select name="payForm" id="payForm" onChange={(e)=>setPayForm(e.target.value)}>
+                                    <option value="selecione">Selecione...</option>
+                                    <option value="money">Dinheiro</option>
+                                    <option value="pix">Pix</option>                                    
+                                    <option value="card">Cartão</option>
+                                </select>                           
+                               
+                            </div>
+                            <div className="field">
+                                <label htmlFor="orderValue">Valor do pedido</label>
+                                <input id="orderValue" name="orderValue" type="text" value={currencyFormat(valorPedido)} disabled />
+                            </div> 
+                            {payForm=='money' &&    
+                                <div className="field">
+                                    <label htmlFor="payChange">Troco para quanto?</label>
+                                    <input id="payChange" name="payChange" type="text" placeholder="Caso precise de troco."/>
+                                </div>
+                            }                     
+                        </div>
+                    </fieldset>
+                    <fieldset>
                         <legend>Endereço de Entrega</legend>
                         <div className="field">
                             <label htmlFor="zipcode">Cep</label>
-                            <input id="zipcode" name="zipcode" type="text" placeholder="Cep" />
+                            <input id="zipcode" name="zipcode" type="text" onBlur={(e)=>handleGetAddressByZipeCode(e.target.value)} placeholder="Cep" />
                         </div>
                         <div className="field">
                             <label htmlFor="street">Endereço</label>
-                            <input id="street" name="street" type="text" placeholder="Endereço" />
+                            <input id="street" name="street" type="text" value={address.logradouro} placeholder="Endereço" />
                         </div>
                         <div className="groupField">
                             <div className="field">
@@ -53,21 +118,21 @@ export function Payment(){
                             </div>
                             <div className="field">
                                 <label htmlFor="complement">Complemento</label>
-                                <input id="complement" name="complement" type="text" placeholder="Complemento" />
+                                <input id="complement" name="complement" type="text" value={address.complemento} placeholder="Complemento" />
                             </div>                        
                         </div>
                         <div className="groupField">
                             <div className="field">
                                 <label htmlFor="neighbothood">Bairro</label>
-                                <input id="neighbothood" name="neighbothood" type="text" placeholder="Bairro" />
+                                <input id="neighbothood" name="neighbothood" type="text" value={address.bairro} placeholder="Bairro" />
                             </div>
                             <div className="field">
                                 <label htmlFor="city">Cidade</label>
-                                <input id="city" name="city" type="text" placeholder="Cidade" />
+                                <input id="city" name="city" type="text" value={address.localidade} placeholder="Cidade" />
                             </div>  
                             <div className="field">
                                 <label htmlFor="state">Estado</label>
-                                <select id="state" name="state">
+                                <select id="state" name="state" value={address.uf}>
                                     <option value="">Selecione</option>
                                     <option value="AC">Acre</option>
                                     <option value="AL">Alagoas</option>
@@ -101,27 +166,7 @@ export function Payment(){
                             </div>                       
                         </div>
                     </fieldset>
-                    <fieldset>
-                        <legend>Cobrança</legend>
-                        <div className="field">
-                            <label htmlFor="cred-cart-number">Número do cartão</label>
-                            <input id="cred-cart-number" name="cred-cart-number" type="text" />
-                        </div>
-                        <div className="field">
-                            <label htmlFor="cred-cart-holder-name">Nome impresso no cartão</label>
-                            <input id="cred-cart-holder-name" name="cred-cart-holder-name" type="text" />
-                        </div>
-                        <div className="groupField">
-                            <div className="field">
-                                <label htmlFor="cred-cart-expiration">Validade(MM/AA)</label>
-                                <input id="cred-cart-expiration" name="cred-cart-expiration" type="text" />
-                            </div>
-                            <div className="field">
-                                <label htmlFor="cred-cart-code">Código de segurança (cvv)</label>
-                                <input id="cred-cart-code" name="cred-cart-code" type="text" />
-                            </div>                        
-                        </div>
-                    </fieldset>
+                    
                     <BtnPayOrder/>
                 </Form>
                 

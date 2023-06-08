@@ -2,19 +2,19 @@ import React from 'react';
 import { Container } from './styles';
 import { useCart } from '../../hooks/useCart';
 import { currencyFormat } from '../../helpers/currencyFormat';
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 
 const BtnPayOrder: React.FC = () => {
-  const {cart} = useCart()
+  const {cart,newCart} = useCart()
   const valorPedido = cart.reduce((acc,currente)=>acc+currente.subTotal,0)
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  function handleFecharPedido(payValue:number){
-    
+  function handleFecharPedido(payValue:number){    
     alert(`Pedido salvo com sucesso, obrigado pela preferência: ${payValue}`)
-    //navigate("/payment")
+    newCart()
+    navigate("/")
   }
   
   return (

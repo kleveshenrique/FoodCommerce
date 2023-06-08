@@ -20,6 +20,7 @@ interface Snack extends SnackData{
 
 interface cartContextProps{
    cart: Snack[]
+   newCart:()=>void
    addSnackInToCart:(snack:SnackData)=>void
    removeSnackFromCart:(_id:string)=>void
    addQuantitySnack:(_id:string)=>void
@@ -35,6 +36,10 @@ export const CartContext = createContext({} as cartContextProps)
 export function CartProvider({children}:CartProviderProps){
 
     const [cart,setCart] = useState<Snack[]>([])
+
+    function newCart():void{
+        setCart([])
+    }
 
     function addSnackInToCart(snack:SnackData):void{
 
@@ -119,7 +124,7 @@ export function CartProvider({children}:CartProviderProps){
     }
 
     return (
-        <CartContext.Provider value={{cart,addSnackInToCart,removeSnackFromCart,addQuantitySnack,removeQuantitySnack}}>
+        <CartContext.Provider value={{cart,newCart,addSnackInToCart,removeSnackFromCart,addQuantitySnack,removeQuantitySnack}}>
             {children}
         </CartContext.Provider>
     )

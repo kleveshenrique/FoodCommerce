@@ -6,7 +6,7 @@ export const Container = styled.button`
 
     width: 25rem;
     height: 2rem;
-    padding:2rem;
+    padding:2rem 1rem;
     font-size: x-large;
     font-weight: 700;
     color: ${({theme})=>theme.colors.white};
@@ -24,13 +24,13 @@ export const Container = styled.button`
     position: fixed;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: 1rem;
     z-index: 9999;  
 
     transition: background 0.2s;
     
     &:hover{
-        background: ${darken(0.1, '#23DB42')};
+        background: ${darken(0.1, '#E03131')};
     }
     
 
