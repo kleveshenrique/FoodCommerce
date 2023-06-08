@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { theme } from "../../styles/Theme";
 
 export const Container = styled.div`
-    width: 100%;
+    width: 68.75%;
+    margin: 0 auto;
     background-color: ${theme.colors.black};
     padding: 2rem 0.5rem;
     box-sizing: border-box;
@@ -142,5 +143,10 @@ export const Container = styled.div`
             
             
         }
+    }
+
+    @media (max-width:728px){
+        width: 100%;
+        margin: 0;
     }
 `

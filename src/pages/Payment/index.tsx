@@ -3,6 +3,7 @@
 import {Container,Form,Inner} from "./styles"
 import logoImg from '../../assets/logo.svg'
 import { Head } from "../../components/Head"
+import BtnPayOrder from "../../components/BtnPayOrder"
 
 
 
@@ -121,8 +122,11 @@ export function Payment(){
                             </div>                        
                         </div>
                     </fieldset>
+                    <BtnPayOrder/>
                 </Form>
+                
             </Inner>
+           
         </Container>
     )
 }

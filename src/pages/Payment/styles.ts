@@ -12,23 +12,18 @@ export const Container = styled.main`
   header {     
     width: 100%;     
     padding: 1.5rem 0;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
     img {
       width: 10rem;     
-          
+      
     }    
 
-    /* @media (max-width: 720px) {
-      display: flex;
-      flex-direction: column;
-      padding-bottom: 8rem;
-
-      img {
-        align-self: center;
-      }
-
-      .header{
-        gap: 7rem;
+    /* @media (max-width:'720px'){
+      
+      header{
+        padding: 1.5rem;
       }
     } */
   }
