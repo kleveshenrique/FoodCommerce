@@ -6,6 +6,7 @@ import { Head } from "../../components/Head"
 import BtnPayOrder from "../../components/BtnPayOrder"
 import { useCart } from "../../hooks/useCart"
 
+
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -15,6 +16,7 @@ import { useState } from "react"
 import axios from "axios"
 
 import {ClientInterface} from "../../interface/ClientInterface"
+import { useNavigate } from "react-router-dom"
 
 const ClientSchema = yup
   .object().shape({
@@ -38,7 +40,9 @@ const ClientSchema = yup
 
 export function Payment(){
 
-    const {cart} = useCart()
+    const {cart,newCart} = useCart()
+    const navigate = useNavigate();
+
     const valorPedido = cart.reduce((acc,currente)=>acc+currente.subTotal,0)
 
     const [payForm,setPayForm] = useState('')
@@ -50,6 +54,8 @@ export function Payment(){
 
     const onSubmit = (data:ClientInterface)=>{
         console.log(JSON.stringify(data, null, 4));
+        newCart()
+        navigate('/')
     }
 
    
@@ -84,7 +90,6 @@ export function Payment(){
             console.log(error)
         })
 
-        console.log(address)
     }
 
     return(
