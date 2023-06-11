@@ -6,9 +6,35 @@ import { Head } from "../../components/Head"
 import BtnPayOrder from "../../components/BtnPayOrder"
 import { useCart } from "../../hooks/useCart"
 
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
 import { currencyFormat } from "../../helpers/currencyFormat"
 import { useState } from "react"
 import axios from "axios"
+
+import {ClientInterface} from "../../interface/ClientInterface"
+
+const ClientSchema = yup
+  .object().shape({
+    fullName: yup.string().required("Nome Obrigatório"),
+    email: yup.string().required("Email obrigatório").email("Email inválido"),
+    mobile: yup.string().required("Contato obrigatório"),
+    cpf: yup.string(),
+    payForm:yup.string(),      
+    orderValue:yup.string(),      
+    payChange:yup.string(),       
+    zipcode:yup.string(),       
+    street:yup.string().required("Endereço obrigtório"),       
+    number:yup.string().required("Número obrigtório"),      
+    complement:yup.string(),      
+    neighbothood:yup.string().required("Bairro obrigtório"),       
+    city:yup.string().required("Cidade obrigtório"),   
+    state:yup.string().required("Estado obrigtório"),
+}).required()
+
+  
 
 export function Payment(){
 
@@ -16,7 +42,19 @@ export function Payment(){
     const valorPedido = cart.reduce((acc,currente)=>acc+currente.subTotal,0)
 
     const [payForm,setPayForm] = useState('')
+    
 
+    const { register, handleSubmit,formState: { errors } } = useForm<ClientInterface>({
+        resolver: yupResolver(ClientSchema),
+    });
+
+    const onSubmit = (data:ClientInterface)=>{
+        console.log(JSON.stringify(data, null, 4));
+    }
+
+   
+    
+    
     const addressInitial = {
         cep: "",
         logradouro: "",
@@ -29,7 +67,9 @@ export function Payment(){
         ddd: "",
         siafi: ""
     }
+
     const [address,setAdress] = useState(addressInitial)
+
 
     function handleGetAddressByZipeCode(zipCode:string){
         axios.get(`https://viacep.com.br/ws/${zipCode}/json/`).then((res)=>{
@@ -55,84 +95,103 @@ export function Payment(){
             </header>  
                        
             <Inner>
-                <Form>
+                <Form   onSubmit={handleSubmit(onSubmit)}>
                     <h1>Informações Pessoais</h1>
                     <div className="field">
-                        <label htmlFor="full-name">Nome e Sobrenome</label>
-                        <input id="full-name" type="text" placeholder="Nome e sobrenome" autoComplete="name"/>
+                        <label htmlFor="fullName">Nome e Sobrenome</label>
+                        <input 
+                            id="fullName"                            
+                            type="text"
+                            placeholder="Nome e sobrenome"
+                            {...register("fullName")}
+                            />
+                            {errors.fullName && <span className="erro">{errors.fullName?.message}</span>}
                     </div>
                     <div className="groupField">
                         <div className="field">
                             <label htmlFor="email">E-mail</label>
-                            <input id="email" type="text" placeholder="E-mail" autoComplete="email"/>
+                            <input id="email" {...register("email")} type="text" placeholder="E-mail" />
+                            {errors.email && <span className="erro">{errors.email?.message}</span>}
                         </div>
                         <div className="field">
                             <label htmlFor="mobile">Contato</label>
-                            <input id="mobile" type="text" placeholder="Celular" autoComplete="phone"/>
+                            <input id="mobile" {...register("mobile")} type="text" placeholder="Celular" />
+                            {errors.mobile && <span className="erro">{errors.mobile?.message}</span>}
                         </div>
                         <div className="field">
                             <label htmlFor="cpf">CPF/CNPJ</label>
-                            <input id="cpf" type="text" placeholder="Cpf"/>
+                            <input id="cpf" {...register("cpf")} type="text" placeholder="Cpf"/>
                         </div>
                     </div>
+                    
                     <fieldset>
                         {/* <legend>Pagamento</legend> */}
                         
                         <div className="groupField">
                             <div className="field">  
                                 <label htmlFor="payForm">Forma de pagamento</label> 
-                                <select name="payForm" id="payForm" onChange={(e)=>setPayForm(e.target.value)}>
+                                <select id="payForm" {...register("payForm")} onChange={(e)=>setPayForm(e.target.value)}>
                                     <option value="selecione">Selecione...</option>
                                     <option value="money">Dinheiro</option>
                                     <option value="pix">Pix</option>                                    
                                     <option value="card">Cartão</option>
                                 </select>                           
-                               
+                                {errors.payForm && <span className="erro">{errors.payForm?.message}</span>}
                             </div>
                             <div className="field">
                                 <label htmlFor="orderValue">Valor do pedido</label>
-                                <input id="orderValue" name="orderValue" type="text" value={currencyFormat(valorPedido)} disabled />
+                                <input id="orderValue" {...register("orderValue")} type="text" value={currencyFormat(valorPedido)} disabled />
+                                
                             </div> 
                             {payForm=='money' &&    
                                 <div className="field">
                                     <label htmlFor="payChange">Troco para quanto?</label>
-                                    <input id="payChange" name="payChange" type="text" placeholder="Caso precise de troco."/>
+                                    <input id="payChange" {...register("payChange")} type="text" placeholder="Caso precise de troco."/>
+                                    
                                 </div>
                             }                     
                         </div>
                     </fieldset>
+                    
                     <fieldset>
                         <legend>Endereço de Entrega</legend>
                         <div className="field">
                             <label htmlFor="zipcode">Cep</label>
-                            <input id="zipcode" name="zipcode" type="text" onBlur={(e)=>handleGetAddressByZipeCode(e.target.value)} placeholder="Cep" />
+                            <input id="zipcode" {...register("zipcode")} type="text" onBlur={(e)=>handleGetAddressByZipeCode(e.target.value)} placeholder="Cep" />
+                            {errors.zipcode && <span className="erro">{errors.zipcode?.message}</span>}
                         </div>
                         <div className="field">
                             <label htmlFor="street">Endereço</label>
-                            <input id="street" name="street" type="text" value={address.logradouro} placeholder="Endereço" />
+                            <input id="street" {...register("street")} type="text" value={address.logradouro} placeholder="Endereço" />
+                            {errors.street && <span className="erro">{errors.street?.message}</span>}
                         </div>
                         <div className="groupField">
                             <div className="field">
                                 <label htmlFor="number">Número</label>
-                                <input id="number" name="number" type="text" placeholder="Número" />
+                                <input id="number" {...register("number")} type="text" placeholder="Número" />
+                                {errors.number && <span className="erro">{errors.number?.message}</span>}
                             </div>
                             <div className="field">
                                 <label htmlFor="complement">Complemento</label>
-                                <input id="complement" name="complement" type="text" value={address.complemento} placeholder="Complemento" />
-                            </div>                        
+                                <input id="complement" {...register("complement")} type="text" value={address.complemento} placeholder="Complemento" />
+                                {errors.complement && <span className="erro">{errors.complement?.message}</span>}
+                            </div>
+                                                    
                         </div>
                         <div className="groupField">
                             <div className="field">
                                 <label htmlFor="neighbothood">Bairro</label>
-                                <input id="neighbothood" name="neighbothood" type="text" value={address.bairro} placeholder="Bairro" />
+                                <input id="neighbothood" {...register("neighbothood")} type="text" value={address.bairro} placeholder="Bairro" />
+                                {errors.neighbothood && <span className="erro">{errors.neighbothood?.message}</span>}
                             </div>
                             <div className="field">
                                 <label htmlFor="city">Cidade</label>
-                                <input id="city" name="city" type="text" value={address.localidade} placeholder="Cidade" />
+                                <input id="city" {...register("city")} type="text" value={address.localidade} placeholder="Cidade" />
+                                {errors.city && <span className="erro">{errors.city?.message}</span>}
                             </div>  
                             <div className="field">
                                 <label htmlFor="state">Estado</label>
-                                <select id="state" name="state" value={address.uf}>
+                                <select id="state"  {...register("state")} value={address.uf}>
                                     <option value="">Selecione</option>
                                     <option value="AC">Acre</option>
                                     <option value="AL">Alagoas</option>
@@ -163,11 +222,12 @@ export function Payment(){
                                     <option value="TO">Tocantins</option>
                                     <option value="EX">Estrangeiro</option>
                                 </select>
+                                {errors.state && <span className="erro">{errors.state?.message}</span>}
                             </div>                       
                         </div>
-                    </fieldset>
-                    
-                    <BtnPayOrder/>
+                    </fieldset>   
+                                     
+                    <BtnPayOrder />
                 </Form>
                 
             </Inner>

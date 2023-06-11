@@ -18,7 +18,7 @@ const BtnPayOrder: React.FC = () => {
   }
   
   return (
-    <Container onClick={()=>handleFecharPedido(valorPedido)}>       
+    <Container type='submit' onClick={()=>handleFecharPedido(valorPedido)}>       
         <span>Pagar</span>
         <span>{currencyFormat(valorPedido)}</span>
     </Container>

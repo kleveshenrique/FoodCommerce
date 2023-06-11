@@ -28,9 +28,9 @@ export const Container = styled.button`
 
     transition: background 0.2s;
     
-    &:hover{
+    /* &:hover{
         background: ${darken(0.1, '#23DB42')};
-    }
+    } */
     
     @media (max-width:'728px'){
         width: 20rem;

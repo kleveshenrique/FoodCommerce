@@ -69,9 +69,11 @@ export const Form = styled.form`
       font-size: large;
       border-radius: 4px;
 
-      transition: all 0.3s;
+      transition: all 0.3s;      
+    }
 
-      
+    span {
+      color: ${({theme})=>theme.colors.red};
     }
 
     #zipcode{
